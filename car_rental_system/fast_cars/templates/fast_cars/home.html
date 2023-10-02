@@ -1,0 +1,26 @@
+{% extends "fast_cars/base.html" %}
+{% block content %}
+<h1 class="display-4 text-center mb-5">RENT YOUR CARS AT AFFORDABLE PRICES</h1>
+<!-- <div class="card-columns"> -->
+    <div class="row">
+                {% for car in cars %}
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="card text-center mb-5 mx-auto" style="width: 19rem;">
+                            <img class="card-img-top" src="{{ car.image_link }}" alt="{{ car.name }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ car.name }} ({{ car.color }})</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ car.brand }}</h6>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                {% if car.is_available %}
+                                    <a href="{% url 'car_detail' car.id %}" class="btn btn-primary">${{ car.rent_price }}/wk</a>
+                                {% else %}
+                                    <h5 class="text-muted">Not available for rent</h5>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+    </div>
+<!-- </div> -->
+
+{% endblock content %}

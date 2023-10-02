@@ -1,0 +1,17 @@
+{% extends "fast_cars/base.html" %}
+{% block content %}
+<a class="nav-item nav-link" href="{% url 'testimonial-create' %}">Add Testimonial</a>
+    {% for testimonial in testimonials %}
+    <article class="media content-section">
+        <img class="rounded-circle article-img" src="{{ testimonial.author.profile.image.url }}" alt="">
+        <div class="media-body">
+          <div class="article-metadata">
+            <a class="mr-2" href="#">{{ testimonial.author }}</a>
+            <small class="text-muted">{{ testimonial.date_posted|date:"F d, Y" }}</small>
+          </div>
+          <h2><a class="article-title" href="{% url 'testimonial-detail' testimonial.id%}">{{ testimonial.title }}</a></h2>
+          <p class="article-content">{{ testimonial.content }}</p>
+        </div>
+      </article>
+    {% endfor %}
+{% endblock content %}

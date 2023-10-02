@@ -1,0 +1,17 @@
+{% extends "fast_cars/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    {% if rented_cars %}
+            <h2 class="display-3 text-center mb-4">Your Rented Cars</h2>
+            <div>
+                {% for car in rented_cars %}
+                    <div class="mb-4 text-center">
+                        <p class="h5">{{ car.name }}</p>
+                        <img class="rounded-circle account-img" src="{{ car.image_link }}">
+                    </div>
+                {% endfor %}
+            </div>
+    {% else %}
+        <p>No cars rented.</p>
+    {% endif %}
+{% endblock content %}

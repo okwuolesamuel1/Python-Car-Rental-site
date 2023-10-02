@@ -1,0 +1,25 @@
+{% extends "fast_cars/base.html" %}
+{% block content %}
+<div class="card mb-3">
+    <img class="card-img-top" src="{{ car.image_link }}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{ car.name }}</h5>
+      <p class="card-text">Brand: {{ car.brand }}</p>
+      <p class="card-text">Price: ${{ car.rent_price }}</p>
+      <p class="card-text text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni nesciunt nobis ratione. Quibusdam expedita itaque, ex repellat dolores laudantium aperiam repudiandae tempore sapiente ab unde reiciendis nisi harum ea. Necessitatibus.
+      Inventore reprehenderit nobis odit pariatur vel molestias recusandae non similique impedit laboriosam assumenda adipisci, laudantium blanditiis accusantium enim minus voluptas voluptate quia ipsum aut? Sit, consectetur consequuntur! Nam, veniam perspiciatis?</p>
+    </div>
+    {% if car.is_available %}
+        <form method="post" action="{% url 'rent_car' car.id %}" class="mb-3 ml-3">
+            {% csrf_token %}
+            <button class="btn btn-primary" type="submit">Rent</button>
+        </form>
+    {% else %}
+        <p>This car is not available for rent at the moment.</p>
+    {% endif %}
+</div>
+
+{% endblock content %}
+
+
+action="{% url 'rent_car' car.id %}"
